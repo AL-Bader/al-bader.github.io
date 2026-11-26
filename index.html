@@ -577,6 +577,38 @@ h1,h2,h3,h4{font-weight:500;text-wrap:balance}
 @media (max-width:960px){.corners{grid-template-columns:1fr;gap:32px}}
 @media (max-width:860px){.tri{max-width:400px}}
 @media (max-width:560px){.meet li{grid-template-columns:1fr}.meet-p{justify-content:flex-start}}
+/* Method part 04: UX north star */
+.uxs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:28px 56px;align-items:stretch;margin:0}
+.uxs-col{display:flex;flex-direction:column;justify-content:center;gap:12px}
+.uxs-lbl{font-size:.8125rem;color:var(--fg-3)}
+.uxs-card{position:relative;display:grid;grid-template-columns:36px minmax(0,1fr);gap:2px 12px;padding:16px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface);animation:itemIn .6s var(--ease) both;animation-delay:calc(var(--i) * 110ms)}
+.uxs-card .s-ic{grid-row:span 2}
+.uxs-card h4{font-size:.9375rem;font-weight:500;line-height:1.4}
+.uxs-card p{font-size:.8125rem;line-height:1.5;color:var(--fg-2)}
+.uxs .in .uxs-card::after{content:"";position:absolute;top:50%;inset-inline-start:100%;width:56px;height:1px;background:var(--fg-3);opacity:.6}
+.uxs .out .uxs-card::before{content:"";position:absolute;top:50%;inset-inline-end:100%;width:56px;height:1px;background:var(--fg-3);opacity:.6}
+.uxs .out .uxs-card::after{content:"";position:absolute;top:calc(50% - 4px);inset-inline-start:-7px;border-block:4px solid transparent;border-inline-start:6px solid var(--fg-3)}
+.uxs-star{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:28px 24px;border:1.5px solid var(--accent);border-radius:16px;background:var(--surface);text-align:center;animation:itemIn .6s var(--ease) .25s both}
+.uxs-star h4{max-width:18ch;font-size:1.375rem;line-height:1.25;letter-spacing:-.01em;text-wrap:balance}
+.uxs-star p:last-child{max-width:28ch;font-size:.875rem;color:var(--fg-2)}
+.uxs-k{font-family:var(--mono);font-size:.75rem;color:var(--accent)}
+:root[lang="ar"] .uxs-k{font-family:var(--sans)}
+.star{width:112px;height:112px;margin-block-end:4px}
+.star-ring{fill:none;stroke:var(--line-2);stroke-width:1;stroke-dasharray:2 5;transform-origin:60px 60px;animation:spin 60s linear infinite}
+.star-body{fill:var(--accent);fill-opacity:.14;stroke:var(--accent);stroke-width:1.25;stroke-linejoin:round;transform-origin:60px 60px;animation:twinkle 4.5s ease-in-out infinite}
+.star-core{fill:var(--accent)}
+@keyframes twinkle{0%,100%{transform:scale(.94) rotate(0deg)}50%{transform:scale(1.04) rotate(6deg)}}
+.uxs-move{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;padding-block-start:24px;border-top:1px solid var(--line)}
+.uxs-move .lbl{margin:0;margin-inline-end:8px}
+.uxrun-lbl{margin-block:48px 16px}
+.uxrun{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}
+.uxrun li{display:grid;gap:6px;align-content:start;padding-block-start:16px;border-top:1px solid var(--line-2);animation:itemIn .6s var(--ease) both;animation-delay:calc(var(--i) * 90ms)}
+.uxrun b{font-family:var(--mono);font-size:.75rem;font-weight:400;color:var(--fg-3)}
+.uxrun h4{font-size:1rem;font-weight:500}
+.uxrun p{font-size:.875rem;line-height:1.5;color:var(--fg-2)}
+@media (max-width:1100px){.uxrun{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:960px){.uxs{grid-template-columns:1fr;gap:16px}.uxs .in .uxs-card::after,.uxs .out .uxs-card::before,.uxs .out .uxs-card::after{display:none}.uxs-star{padding:24px}}
+@media (max-width:600px){.uxrun{grid-template-columns:1fr;gap:16px}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -1045,8 +1077,39 @@ const C = {
                "في أركان بنيت المنهجية التي تقوم عليها مشاريعنا: سبع مراحل ضمن أربعة أنظمة، ويمكن للعميل أن يبدأ من أي مرحلة.") },
     { id: "brand-strategy", n: "03", t: L("The framework", "الإطار"), h: L("Brand strategy", "استراتيجية العلامة"),
       sub: L("A framework I built at Arcan and apply with BeStudio: four stages that lead to one brand idea.",
-             "إطار بنيته في أركان وأطبّقه مع BeStudio: أربع مراحل تقود إلى فكرة واحدة للعلامة.") }
+             "إطار بنيته في أركان وأطبّقه مع BeStudio: أربع مراحل تقود إلى فكرة واحدة للعلامة.") },
+    { id: "ux", n: "04", t: L("The experience", "التجربة"), h: L("UX design", "تصميم تجربة المستخدم"),
+      sub: L("How I take a strategy to the screen: one north star, set by what the business needs and what people need, carried through every flow and touchpoint.",
+             "كيف أنقل الاستراتيجية إلى الشاشة: نجم شمال واحد، يحدّده ما تحتاجه المنشأة وما يحتاجه الناس، ويُحمل عبر كل مسار ونقطة تواصل.") }
   ],
+  ux: {
+    aria: L("UX north star model: business and brand needs and people’s needs set one north star, which shapes flows and structure, the interface and every touchpoint, to move clarity, trust, adoption and retention.",
+            "نموذج نجم الشمال لتجربة المستخدم: احتياجات المنشأة والعلامة واحتياجات الناس تحدّد نجم شمال واحدًا، يشكّل المسارات والبنية والواجهة وكل نقطة تواصل، ليحرّك الوضوح والثقة والتبنّي والاستمرار."),
+    inLbl: L("What it starts from", "نقطة الانطلاق"),
+    ins: [
+      { ic: "briefcase", t: L("Business & brand", "المنشأة والعلامة"), p: L("What the business needs and what the brand promises, taken from the strategy.", "ما تحتاجه المنشأة وما تعد به العلامة، مأخوذًا من الاستراتيجية.") },
+      { ic: "people", t: L("People", "الناس"), p: L("What users need, worry about and try to get done, from research, personas and journeys.", "ما يحتاجه المستخدمون، وما يقلقهم، وما يسعون لإنجازه، من البحث والشخصيات والرحلات.") }
+    ],
+    star: { k: L("North star", "نجم الشمال"), t: L("One sentence the experience must deliver", "جملة واحدة يجب أن تحققها التجربة"), p: L("Every flow, screen and message is checked against it.", "يُقاس عليها كل مسار وشاشة ورسالة.") },
+    outLbl: L("What it shapes", "ما تشكّله"),
+    outs: [
+      { ic: "route", t: L("Flows & structure", "المسارات والبنية"), p: L("User flows, information architecture and how the product behaves: what it explains, what can be undone, where people stay in control.", "مسارات المستخدم، وهندسة المعلومات، وسلوك المنتج: ما يشرحه، وما يمكن التراجع عنه، وأين يبقى المستخدم متحكّمًا.") },
+      { ic: "app", t: L("Interface", "الواجهة"), p: L("A UI system of layout, type, components and states, prototyped early to learn before building.", "نظام واجهة من التخطيط والخطوط والمكوّنات والحالات، يُنمذج مبكرًا لنتعلّم قبل البناء.") },
+      { ic: "layers", t: L("Touchpoints", "نقاط التواصل"), p: L("Digital, physical and communication touchpoints that feel like one experience.", "نقاط تواصل رقمية ومادية واتصالية تبدو تجربةً واحدة.") }
+    ],
+    moveLbl: L("What it should move", "ما ينبغي أن يحرّكه"),
+    moves: [L("Clarity", "الوضوح"), L("Trust", "الثقة"), L("Adoption", "التبنّي"), L("Retention", "الاستمرار")],
+    runLbl: L("How I run it, as on Metanoia OS", "كيف أديره، كما في Metanoia OS"),
+    run: [
+      { t: L("Discover", "الاكتشاف"), p: L("Research the people and the problem, then set the north star.", "أبحث في الناس والمشكلة، ثم أحدّد نجم الشمال.") },
+      { t: L("Prototype", "النموذج الأولي"), p: L("A clickable first version of the whole product, to see it end to end.", "نسخة أولى قابلة للنقر للمنتج كله، لرؤيته من البداية إلى النهاية.") },
+      { t: L("Design labs", "مختبرات التصميم"), p: L("One feature at a time on a copy of the app, sometimes with two independent directions to compare.", "ميزة واحدة في كل مرة على نسخة من التطبيق، وأحيانًا باتجاهين مستقلين للمقارنة.") },
+      { t: L("Build readiness", "جاهزية البناء"), p: L("Decisions locked and handed to the build, screen by screen.", "قرارات محسومة تُسلَّم للتنفيذ، شاشةً بشاشة.") },
+      { t: L("Design kit", "حقيبة التصميم"), p: L("The components, states and rules that keep the product consistent as it grows.", "المكوّنات والحالات والقواعد التي تحافظ على اتساق المنتج مع نموّه.") }
+    ],
+    applied: [{ to: "metanoia", t: L("Metanoia", "ميتانويا") }, { to: "ubmp", t: L("UBMP", "UBMP") }, { to: "work-elaa", t: L("Elaa Community", "إعلاء المجتمع") }, { to: "work-arcan", t: L("Saudi Arcan website", "موقع أركان السعودية") }],
+    sources: L("Draws on north-star UX strategy and UXDA’s digital experience governance framework.", "يستند إلى مفهوم نجم الشمال في استراتيجية تجربة المستخدم، وإلى إطار UXDA لحوكمة التجربة الرقمية.")
+  },
   lens: {
     aria: L("Venn diagram: business design sits where desirability for people, viability for the business and feasibility of technology overlap.", "مخطط فن: يقع تصميم الأعمال حيث تتقاطع رغبة الناس، وجدوى الأعمال، وقابلية التنفيذ التقنية."),
     center: L("Business design", "تصميم الأعمال"),
@@ -1215,8 +1278,8 @@ const C = {
         skills: [L("Strategy design & roadmapping", "تصميم الاستراتيجية وخرائط الطريق"), L("Brand strategy & positioning", "استراتيجية العلامة والتموضع"), L("Market research & benchmarking", "أبحاث السوق والمقارنة المعيارية"), L("Business process development", "تطوير العمليات"), L("Stakeholder & vendor management", "إدارة أصحاب المصلحة والموردين"), L("Agile project management", "إدارة المشاريع الرشيقة")],
         proof: [{ to: "process", t: L("The 7D method", "منهجية 7D") }, { to: "work-waqf", t: L("King Abdulaziz Waqf", "وقف الملك عبدالعزيز") }] },
       { ic: "people", k: L("Desirability", "الرغبة"), t: L("Design", "التصميم"), h: L("Starting from the people it serves", "البدء من الناس الذين يخدمهم"),
-        p: L("I start from the people a brand serves, then shape what they’ll meet: its meaning, voice and experience. I also design and run the sessions that move a room to decisions, as a certified trainer of trainers.", "أبدأ من الناس الذين تخدمهم العلامة، ثم أشكّل ما سيلتقون به: معناها وصوتها وتجربتها. وأصمّم الجلسات وأديرها لتنقل المجموعة إلى القرار، بصفتي مدرّبًا معتمدًا للمدربين."),
-        skills: [L("Customer journey & experience design", "تصميم رحلة العميل والتجربة"), L("Wayfinding & workplace experience", "الإرشاد وتجربة بيئة العمل"), L("Design thinking", "التفكير التصميمي"), L("Innovation & ideation workshops", "ورش الابتكار وتوليد الأفكار"), L("Workshop facilitation", "تيسير ورش العمل"), L("Learning program design", "تصميم البرامج التعليمية"), L("Gamification & engagement design", "التلعيب وتصميم التفاعل")],
+        p: L("I start from the people a brand serves, then shape what they’ll meet: its meaning, voice, experience and interface. I also design and run the sessions that move a room to decisions, as a certified trainer of trainers.", "أبدأ من الناس الذين تخدمهم العلامة، ثم أشكّل ما سيلتقون به: معناها وصوتها وتجربتها وواجهتها. وأصمّم الجلسات وأديرها لتنقل المجموعة إلى القرار، بصفتي مدرّبًا معتمدًا للمدربين."),
+        skills: [L("UI/UX design", "تصميم الواجهات وتجربة المستخدم (UI/UX)"), L("User flows & information architecture", "مسارات المستخدم وهندسة المعلومات"), L("Wireframes & prototypes", "الإطارات السلكية والنماذج الأولية"), L("Design systems", "أنظمة التصميم"), L("Customer journey & experience design", "تصميم رحلة العميل والتجربة"), L("Wayfinding & workplace experience", "الإرشاد وتجربة بيئة العمل"), L("Design thinking", "التفكير التصميمي"), L("Innovation & ideation workshops", "ورش الابتكار وتوليد الأفكار"), L("Workshop facilitation", "تيسير ورش العمل"), L("Learning program design", "تصميم البرامج التعليمية"), L("Gamification & engagement design", "التلعيب وتصميم التفاعل")],
         proof: [{ to: "brand-strategy", t: L("Brand strategy framework", "إطار استراتيجية العلامة") }, { to: "work-gamra", t: L("GAMRA by ASFAR", "قمرة من أسفار") }, { to: "work-sme", t: L("SME Bank workshops", "ورش بنك المنشآت") }] },
       { ic: "code", k: L("Feasibility", "قابلية التنفيذ"), t: L("Technology", "التقنية"), h: L("Building what I recommend", "بناء ما أوصي به"),
         p: L("I don’t stop at the slide. When a strategy needs a website, a tool or an app, I build it, working with AI coding agents to get from idea to working software fast.", "لا أتوقف عند العرض التقديمي. حين تحتاج الاستراتيجية إلى موقع أو أداة أو تطبيق، أبنيها، وأعمل مع وكلاء البرمجة بالذكاء الاصطناعي لأنتقل بسرعة من الفكرة إلى برنامج يعمل."),
@@ -1295,7 +1358,7 @@ const C = {
   tiles: {
     about: { ic: "user", d: L("Strategy × design × technology: what I bring and how I work", "الاستراتيجية × التصميم × التقنية: ما أقدّمه وكيف أعمل") },
     path: { ic: "route", d: L("From quality consulting and enterprise sales to business design", "من استشارات الجودة ومبيعات الشركات إلى تصميم الأعمال") },
-    method: { ic: "compass", d: L("The business design lens, the 7D process and my brand strategy framework", "عدسة تصميم الأعمال، ومسار 7D، وإطار استراتيجية العلامة") },
+    method: { ic: "compass", d: L("Business design, the 7D process, brand strategy and UX design", "تصميم الأعمال، ومسار 7D، واستراتيجية العلامة، وتصميم تجربة المستخدم") },
     work: { ic: "briefcase", d: L("Case studies from brand strategy to working software", "دراسات حالة من استراتيجية العلامة إلى البرمجيات العاملة") },
     range: { ic: "layers", d: L("What each engagement involved, from research to a working product", "ما شمله كل مشروع، من البحث حتى المنتج العامل") },
     products: { ic: "app", d: L("UBMP, Metanoia and the tools behind my client work", "UBMP وميتانويا والأدوات التي تقف خلف عملي مع العملاء") },
@@ -1582,6 +1645,13 @@ function triVisual() {
   </svg></figure>`;
 }
 
+/* An eight-point star: the north star of the UX part. */
+function uxStar() {
+  const c = 60, pts = [];
+  for (let k = 0; k < 16; k++) { const a = k * Math.PI / 8, r = k % 4 === 0 ? 54 : k % 2 === 0 ? 24 : 11; pts.push(`${(c + r * Math.sin(a)).toFixed(1)},${(c - r * Math.cos(a)).toFixed(1)}`); }
+  return `<svg class="star" viewBox="0 0 120 120" aria-hidden="true"><circle class="star-ring" cx="60" cy="60" r="44"/><polygon class="star-body" points="${pts.join(" ")}"/><circle class="star-core" cx="60" cy="60" r="3.5"/></svg>`;
+}
+
 function range() {
   return `<section class="section" id="range" data-sec><div class="wrap">
     ${secHead(C.rangeHead, C.rangeSub)}
@@ -1637,12 +1707,25 @@ function method() {
       </div>
     </div></figure>
     <p class="bsf-applied"><span class="lbl">${t(B.applied)}</span>${B.cases.map(id => `<a class="text-link" href="#${hashFor("case", id)}" data-jump="work-${id}">${t(client(id))}${ICON.arrow}</a>`).join("")}</p>`;
+  const U = C.ux;
+  const uxCard = (x, i) => `<div class="uxs-card" style="--i:${i}"><span class="s-ic">${ic(x.ic)}</span><h4>${t(x.t)}</h4><p>${t(x.p)}</p></div>`;
+  const ux = `<figure class="uxs" aria-label="${t(U.aria)}">
+      <div class="uxs-col in"><p class="uxs-lbl">${t(U.inLbl)}</p>${U.ins.map((x, i) => uxCard(x, i)).join("")}</div>
+      <div class="uxs-star">${uxStar()}<p class="uxs-k">${t(U.star.k)}</p><h4>${t(U.star.t)}</h4><p>${t(U.star.p)}</p></div>
+      <div class="uxs-col out"><p class="uxs-lbl">${t(U.outLbl)}</p>${U.outs.map((x, i) => uxCard(x, i + 3)).join("")}</div>
+      <div class="uxs-move"><span class="lbl">${t(U.moveLbl)}</span>${U.moves.map(m => `<span class="chip">${t(m)}</span>`).join("")}</div>
+    </figure>
+    <p class="lbl uxrun-lbl">${t(U.runLbl)}</p>
+    <ol class="uxrun">${U.run.map((r, i) => `<li style="--i:${i}"><b>${String(i + 1).padStart(2, "0")}</b><h4>${t(r.t)}</h4><p>${t(r.p)}</p></li>`).join("")}</ol>
+    <p class="bsf-applied"><span class="lbl">${t(C.bsf.applied)}</span>${U.applied.map(p => `<a class="text-link" href="#${p.to}" data-jump="${p.to}">${t(p.t)}${ICON.arrow}</a>`).join("")}</p>
+    <p class="sources">${t(U.sources)}</p>`;
   return `<section class="section" id="method" data-sec><div class="wrap">
     ${secHead(C.methodHead, C.methodSub)}
     <nav class="mnav" aria-label="${t(C.mnavAria)}">${M.map(p => `<a href="#${p.id}" data-jump="${p.id}"><b>${p.n}</b>${t(p.t)}<span>${t(p.h)}</span></a>`).join("")}</nav>
     ${part(M[0], lens)}
     ${part(M[1], process)}
     ${part(M[2], brand)}
+    ${part(M[3], ux)}
   </div></section>`;
 }
 
@@ -1776,7 +1859,7 @@ function resolveId(h) {
   const cid = /^(work|case)-(.+)$/.exec(h);
   if (cid && C.cases.some(c => c.id === cid[2])) return { view: "case", item: cid[2] };
   if (h === "ubmp" || h === "metanoia" || h === "tools") return { view: "products", anchor: h };
-  if (h === "lens" || h === "process" || h === "brand-strategy") return { view: "method", anchor: h };
+  if (h === "lens" || h === "process" || h === "brand-strategy" || h === "ux") return { view: "method", anchor: h };
   return { view: VIEWS.includes(h) ? h : "home" };
 }
 function parseHash() {
