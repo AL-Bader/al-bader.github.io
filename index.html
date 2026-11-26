@@ -517,6 +517,9 @@ h1,h2,h3,h4{font-weight:500;text-wrap:balance}
 const PHOTO = { src: "img/portrait.jpg", w: 1254, h: 1254 };
 const L = (en, ar) => ({ en, ar });
 
+// The CV PDF is published with the GitHub Pages site; an absolute link works from the artifact and the hosted copy alike.
+const CV_URL = "https://al-bader.github.io/Albader_Alrayess_CV.pdf";
+
 const C = {
   name: L("Albader Alrayess", "البدر الريّس"),
   photoAlt: L("Portrait of Albader Alrayess", "صورة البدر الريّس"),
@@ -537,6 +540,7 @@ const C = {
             "أمضيت أكثر من 12 عامًا في الاستراتيجية والعلامات التجارية والابتكار والأدوار التجارية. وأقود اليوم مشاريع استراتيجية العلامة والأعمال والتجربة، نُفّذ معظمها مع BeStudio، وأبني في أركان لتصميم الأعمال المنهجية والأدوات التي يقوم عليها العمل."),
     ctaWork: L("See the work", "استعرض الأعمال"),
     ctaContact: L("Get in touch", "تواصل معي"),
+    ctaCV: L("Download CV", "تحميل السيرة الذاتية"),
     facts: [
       { n: "12+", t: L("Years across strategy, brand and commercial roles", "عامًا في الاستراتيجية والعلامات والأدوار التجارية") },
       { n: "10", t: L("Client engagements since 2022", "مشاريع لعملاء منذ 2022") },
@@ -1152,6 +1156,7 @@ const C = {
     { k: L("Email", "البريد الإلكتروني"), v: "a.alrayess@gmail.com", copy: true },
     { k: L("Phone", "الهاتف"), v: "+966 55 110 0686", copy: true },
     { k: L("LinkedIn", "لينكدإن"), v: L("View profile", "عرض الملف الشخصي"), href: "https://www.linkedin.com/in/albader-alrayess-39103958/", copy: true },
+    { k: L("CV", "السيرة الذاتية"), v: L("Download PDF · 2 pages", "تحميل PDF · صفحتان بالإنجليزية"), href: CV_URL, dl: true },
     { k: L("Based in", "المقر"), v: L("Riyadh, Saudi Arabia · works in Arabic & English", "الرياض، المملكة العربية السعودية · أعمل بالعربية والإنجليزية") }
   ],
   copyT: L("Copy", "نسخ"), copiedT: L("Copied", "تم النسخ"), selectT: L("Selected", "تم التحديد"),
@@ -1221,6 +1226,7 @@ Object.assign(ICON, {
   flag: svg(`<path d="M5 21V4"/><path d="M5 4h12l-2.5 4.5L17 13H5"/>`),
   grid: svg(`<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>`),
   code: svg(`<path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/>`),
+  download: svg(`<path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/>`),
   file: svg(`<path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/>`),
   clip: svg(`<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/>`),
   pen: svg(`<path d="m12 19 7-7 3 3-7 7z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18z"/><path d="m2 2 7.6 7.6"/><circle cx="11" cy="11" r="2"/>`),
@@ -1231,7 +1237,7 @@ Object.assign(ICON, {
   chip: svg(`<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M10 10h4v4h-4zM9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>`)
 });
 const ST_IC = ["flag", "grid", "people", "code"], TOOL_IC = ["layers", "file", "clip", "pen", "cap"],
-  SK_IC = ["target", "pen", "eye", "people", "sliders", "chip"], CT_IC = ["mail", "phone", "idcard", "pin"];
+  SK_IC = ["target", "pen", "eye", "people", "sliders", "chip"], CT_IC = ["mail", "phone", "idcard", "file", "pin"];
 const ic = k => ICON[k] || "";
 const altTitle = v => `<span class="alt" lang="${other()}">${esc(O(v))}</span>`;
 const secHead = (title, sub) => `<header class="sec-head"><h2><span>${t(title)}</span>${altTitle(title)}</h2>${sub ? `<p>${t(sub)}</p>` : ""}</header>`;
@@ -1258,6 +1264,7 @@ function hero() {
       <div class="actions">
         <a class="btn btn-primary" href="#${hashFor("work")}" data-jump="work">${t(h.ctaWork)}${ICON.arrow}</a>
         <a class="btn btn-quiet" href="#${hashFor("contact")}" data-jump="contact">${t(h.ctaContact)}</a>
+        <a class="btn btn-quiet" href="${CV_URL}" target="_blank" rel="noopener">${ICON.download}${t(h.ctaCV)}</a>
       </div>
     </div></div>
     <div class="hero-photo"><img src="${PHOTO.src}" width="${PHOTO.w}" height="${PHOTO.h}" alt="${t(C.photoAlt)}" fetchpriority="high" decoding="async"></div>
@@ -1558,7 +1565,7 @@ function contact() {
       <div><h2><span>${t(C.contactHead)}</span>${altTitle(C.contactHead)}</h2><p class="lead">${t(C.contactLead)}</p></div>
       <div class="crows">${C.contact.map((c, i) => `<div class="crow">
         <span class="k">${ic(CT_IC[i])}${t(c.k)}</span>
-        <span class="v${c.href ? " link" : c.copy ? "" : " plain"}" id="cv-${i}">${c.href ? `<a href="${esc(c.href)}" target="_blank" rel="noopener">${t(c.v)}${ICON.ext}</a>` : t(c.v)}</span>
+        <span class="v${c.href ? " link" : c.copy ? "" : " plain"}" id="cv-${i}">${c.href ? `<a href="${esc(c.href)}" target="_blank" rel="noopener">${c.dl ? ICON.download : ""}${t(c.v)}${c.dl ? "" : ICON.ext}</a>` : t(c.v)}</span>
         ${c.copy ? `<button class="copy-btn" type="button" data-copy="${esc(c.href || c.v)}" data-target="cv-${i}">${ICON.copy}<span>${t(C.copyT)}</span></button>` : ""}
       </div>`).join("")}</div>
     </div>
