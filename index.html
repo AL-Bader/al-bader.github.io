@@ -573,7 +573,7 @@ h1,h2,h3,h4{font-weight:500;text-wrap:balance}
 .corner-p{font-size:.9375rem;color:var(--fg-2)}
 .corner .role-chips{margin-block-start:0}
 .proofs{display:flex;flex-wrap:wrap;align-items:center;gap:0 16px}
-.proofs .lbl{margin:0}
+.proofs .lbl{flex-basis:100%;margin:0 0 -6px}
 @media (max-width:960px){.corners{grid-template-columns:1fr;gap:32px}}
 @media (max-width:860px){.tri{max-width:400px}}
 @media (max-width:560px){.meet li{grid-template-columns:1fr}.meet-p{justify-content:flex-start}}
@@ -1269,9 +1269,9 @@ const C = {
       { k: L("Strategy × Technology", "الاستراتيجية × التقنية"), t: L("Systems that scale a method", "أنظمة توسّع نطاق المنهجية"),
         proof: [{ to: "ubmp", t: L("UBMP", "UBMP") }, { to: "tools", t: L("Arcan’s toolkits", "أدوات أركان") }] }
     ],
-    cornersHead: L("Three skills, with the proof", "ثلاث مهارات، مع الدليل"),
+    cornersHead: L("Three skills I bring", "ثلاث مهارات أقدّمها"),
     cornersSub: L("What each one means in my work, and where to see it", "ماذا تعني كل منها في عملي، وأين تراها"),
-    proofLbl: L("Proof", "الدليل"),
+    seeLbl: L("See it in", "شاهد ذلك في"),
     corners: [
       { ic: "target", k: L("Viability", "الجدوى"), t: L("Strategy", "الاستراتيجية"), h: L("Turning ambiguity into structure", "تحويل الغموض إلى بنية"),
         p: L("I take broad, messy briefs and give them a shape teams can use: choices, frameworks, roadmaps and the method behind them.", "آخذ المهام الواسعة غير الواضحة وأمنحها شكلًا تستطيع الفرق استخدامه: خيارات وأطرًا وخرائط طريق، والمنهجية التي تقف خلفها."),
@@ -1792,7 +1792,7 @@ function products() {
 function about() {
   const a = C.about;
   const block = (title, sub, body, cls) => `<div class="about-block${cls ? " " + cls : ""}"><header><h3>${t(title)}</h3>${sub ? `<p>${t(sub)}</p>` : ""}</header><div class="about-body">${body}</div></div>`;
-  const plink = (p, pre) => `<a class="text-link" href="#${p.to}" data-jump="${p.to}">${pre ? `${t(a.proofLbl)}: ` : ""}${t(p.t)}${ICON.arrow}</a>`;
+  const plink = (p, pre) => `<a class="text-link" href="#${p.to}" data-jump="${p.to}">${pre ? `${t(a.seeLbl)} ` : ""}${t(p.t)}${ICON.arrow}</a>`;
   const rows = items => `<ul class="rows">${items.map(r => `<li class="row"><h4>${t(r.t)}</h4><div><p>${t(r.p)}</p>${r.roles ? `<ul class="role-chips">${r.roles.map(x => `<li class="chip">${t(x)}</li>`).join("")}</ul>` : ""}${r.proof ? plink(r.proof, true) : ""}</div></li>`).join("")}</ul>`;
   const meet = `<div class="meet"><p class="lbl">${t(a.meetLbl)}</p><ul>${a.meet.map(m => `<li>
       <div><p class="meet-k">${t(m.k)}</p><h4>${t(m.t)}</h4></div>
@@ -1802,7 +1802,7 @@ function about() {
       <p class="corner-h">${t(c.h)}</p>
       <p class="corner-p">${t(c.p)}</p>
       <ul class="role-chips">${c.skills.map(x => `<li class="chip">${t(x)}</li>`).join("")}</ul>
-      <p class="proofs"><span class="lbl">${t(a.proofLbl)}</span>${c.proof.map(p => plink(p)).join("")}</p>
+      <p class="proofs"><span class="lbl">${t(a.seeLbl)}</span>${c.proof.map(p => plink(p)).join("")}</p>
     </article>`).join("")}</div>`;
   const certs = `<ul class="certs">${a.certs.map(c => `<li class="cert"><div><h4>${t(c.t)}</h4><p>${t(c.by)}</p></div><span class="yr num">${esc(c.yr)}</span></li>`).join("")}</ul>
     <div class="also"><p class="lbl">${t(a.alsoLbl)}</p><ul>${a.also.map(x => `<li>${t(x)}</li>`).join("")}</ul></div>`;
